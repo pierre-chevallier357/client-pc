@@ -1,23 +1,23 @@
 <h2>Page avec le jeu du dilemme du prisonnier</h2>
 <button mat-button>
-  <a routerLink="/connection">Connexion</a>
+  <a routerLink="/connection">Voir page de connexion</a>
 </button>
 
 <h2>Stratégie</h2>
 <mat-form-field appearance="fill">
-  <mat-label>Stratégie</mat-label>
+  <mat-label>Sélectionner</mat-label>
   <mat-select [(ngModel)]="selectedStrategie" name="selectedStrategie">
     <mat-option *ngFor="let strategie of strategiesList" [value]="strategie">
       {{ strategie }}
     </mat-option>
   </mat-select>
 </mat-form-field>
-<p>Selected strategie: {{ selectedStrategie }}</p>
+<p>Stratégie sélectionnée : {{ selectedStrategie }}</p>
 
 <h2>Décision</h2>
-<button mat-raised-button (click)="selectedButton = 'cooperer'">Coopérer</button>
-<button mat-raised-button (click)="selectedButton = 'trahir'">Trahir</button>
-<p>Selected button: {{ selectedButton }}</p>
+<button mat-raised-button (click)="selectedDecision = 'cooperer'">Coopérer</button>
+<button mat-raised-button (click)="selectedDecision = 'trahir'">Trahir</button>
+<p>Décision sélectionnée : {{ selectedDecision }}</p>
 
 <h2>Score des joueurs</h2>
 <p>Joueur 1 : {{ player1Score }}</p>

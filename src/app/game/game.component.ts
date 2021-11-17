@@ -27,7 +27,7 @@ export class GameComponent implements OnInit {
     'Donnant donnant soupçonneux',
     'Rancunier doux',
   ];
-  selectedButton: string;
+  selectedDecision: string;
   player1Score: number = 0;
   player2Score: number = 0;
   currentTurn: number = 0;
