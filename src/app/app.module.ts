@@ -6,9 +6,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
+import { GameComponent } from './game/game.component';
+import { ConnectionComponent } from './connection/connection.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, GameComponent, ConnectionComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -17,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
