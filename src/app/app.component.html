@@ -1,3 +1,23 @@
 <h1>Dilemme du prisonnier</h1>
 
-<button>Hey</button>
+<h2>Stratégie</h2>
+<mat-form-field appearance="fill">
+  <mat-label>Stratégie</mat-label>
+  <mat-select [(ngModel)]="selectedStrategie" name="selectedStrategie">
+    <mat-option *ngFor="let strategie of strategiesList" [value]="strategie">
+      {{ strategie }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<p>Selected strategie: {{ selectedStrategie }}</p>
+
+<h2>Décision</h2>
+<button mat-raised-button (click)="selectedButton = 'cooperer'">Coopérer</button>
+<button mat-raised-button (click)="selectedButton = 'trahir'">Trahir</button>
+<p>Selected button: {{ selectedButton }}</p>
+
+<h2>Score des joueurs</h2>
+<p>Joueur 1 : {{ player1Score }}</p>
+<p>Joueur 2 : {{ player2Score }}</p>
+
+<h2>Tour n°{{ currentTurn }}</h2>

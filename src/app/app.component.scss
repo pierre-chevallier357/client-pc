@@ -1,1 +1,15 @@
 @import '~@angular/material/theming';
+
+h1 {
+  margin: 1em 0 0.6em 0;
+  padding: 0 0 0 20px;
+  font-weight: 900;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+  position: relative;
+  font-size: 50px;
+  line-height: 40px;
+}
+
+.mat-select-value-text {
+  color: white !important;
+}
