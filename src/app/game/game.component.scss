@@ -1,1 +1,17 @@
 @import '~@angular/material/theming';
+
+h2 {
+  margin: 0;
+  font: inherit !important;
+  font-weight: bold !important;
+  font-size: 1.5em !important;
+}
+
+.mat-body,
+.mat-body-1,
+.mat-typography {
+  margin: 0;
+  font: inherit !important;
+  font-weight: bold !important;
+  font-size: 1.5em !important;
+}
