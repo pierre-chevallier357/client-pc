@@ -13,14 +13,19 @@ export class PlayerService {
 
   constructor(private http: HttpClient) {}
 
-  getAllPlayers(): Observable<Player[]> {
-    const url = this.backendUrl + 'all-joueur';
-    return this.http.get<Player[]>(url);
+  async getAllPlayers(): Promise<number[]> {
+    const url = await fetch(this.backendUrl + 'all-joueur-by-id');
+    let temp: String = await url.text();
+    let players = temp.split('&').map(function (item) {
+      return parseInt(item, 10);
+    });
+    return players;
   }
 
-  createPlayer(firstname: string): Observable<any> {
-    console.log(this.backendUrl + 'creation-joueur/' + firstname);
-    return this.http.post(this.backendUrl + 'creation-joueur/', firstname);
+  async createPlayer(firstname: string): Promise<number> {
+    const url = await fetch(this.backendUrl + 'creation-joueur/' + firstname);
+    let playerId: number = Number(await url.text());
+    return playerId;
   }
 
   setCreatingPlayerId(id: number) {

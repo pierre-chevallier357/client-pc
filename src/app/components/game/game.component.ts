@@ -34,7 +34,7 @@ export class GameComponent implements OnInit {
   player2Score: number = 0;
   currentTurn: number = 0;
   hasAnyPlayerGivenUp: boolean = false;
-  players: Player[];
+  playersIds: number[];
 
   // To communicate with the back-end
   // See this link : https://angular.io/guide/http
@@ -46,8 +46,8 @@ export class GameComponent implements OnInit {
   ngOnInit(): void {}
 
   getPlayers() {
-    return this.playerService.getAllPlayers().subscribe((response) => {
-      this.players = response;
+    return this.playerService.getAllPlayers().then((response) => {
+      this.playersIds = response;
     });
   }
 }

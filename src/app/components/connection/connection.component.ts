@@ -16,7 +16,7 @@ export class ConnectionComponent implements OnInit {
   ngOnInit() {}
 
   createPlayer() {
-    this.playerService.createPlayer(this.firstname.value).subscribe((id) => {
+    this.playerService.createPlayer(this.firstname.value).then((id) => {
       this.creatingPlayerId = id;
       this.playerService.setCreatingPlayerId(id);
     });
