@@ -1,0 +1,11 @@
+<h2>À faire : page de connexion des joueurs à la partie</h2>
+<button mat-button>
+  <a routerLink="/game">Voir page du jeu</a>
+</button>
+
+<mat-form-field>
+  <mat-label>Prénom</mat-label>
+  <input matInput [formControl]="firstname" placeholder="Indiquez votre nom" />
+</mat-form-field>
+
+<p>{{ firstname.value }}</p>

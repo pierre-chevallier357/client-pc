@@ -1,4 +1,6 @@
+import { PlayerService } from './../../services/player/player.service';
 import { Component, OnInit } from '@angular/core';
+import { Player } from 'src/app/models/player/player.model';
 
 @Component({
   selector: 'app-game',
@@ -32,11 +34,20 @@ export class GameComponent implements OnInit {
   player2Score: number = 0;
   currentTurn: number = 0;
   hasAnyPlayerGivenUp: boolean = false;
+  players: Player[];
 
   // To communicate with the back-end
   // See this link : https://angular.io/guide/http
 
-  constructor() {}
+  constructor(private playerService: PlayerService) {
+    //this.getPlayers();
+  }
 
   ngOnInit(): void {}
+
+  getPlayers() {
+    return this.playerService.getAllPlayers().subscribe((response) => {
+      this.players = response;
+    });
+  }
 }
