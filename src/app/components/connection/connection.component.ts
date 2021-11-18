@@ -1,3 +1,4 @@
+import { PlayerService } from './../../services/player/player.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
@@ -8,8 +9,16 @@ import { FormControl } from '@angular/forms';
 })
 export class ConnectionComponent implements OnInit {
   firstname = new FormControl('');
+  creatingPlayerId: number;
 
-  constructor() {}
+  constructor(private playerService: PlayerService) {}
 
-  ngOnInit(): void {}
+  ngOnInit() {}
+
+  createPlayer() {
+    this.playerService.createPlayer(this.firstname.value).subscribe((id) => {
+      this.creatingPlayerId = id;
+      this.playerService.setCreatingPlayerId(id);
+    });
+  }
 }

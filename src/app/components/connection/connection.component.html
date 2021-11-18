@@ -1,11 +1,13 @@
-<h2>À faire : page de connexion des joueurs à la partie</h2>
-<button mat-button>
-  <a routerLink="/game">Voir page du jeu</a>
-</button>
-
+<p>Prénom</p>
 <mat-form-field>
   <mat-label>Prénom</mat-label>
   <input matInput [formControl]="firstname" placeholder="Indiquez votre nom" />
 </mat-form-field>
+<br /><br />
+<button mat-button [disabled]="firstname.value === ''" [routerLink]="'/create-game'" (click)="createPlayer()">
+  Créer une partie
+</button>
 
-<p>{{ firstname.value }}</p>
+<button mat-button [disabled]="firstname.value === ''" [routerLink]="'/join-game'" (click)="createPlayer()">
+  Rejoindre une partie
+</button>

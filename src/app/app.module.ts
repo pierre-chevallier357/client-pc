@@ -10,9 +10,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { GameComponent } from './components//game/game.component';
 import { ConnectionComponent } from './components/connection/connection.component';
 import { MatInputModule } from '@angular/material/input';
+import { CreateGameComponent } from './components/create-game/create-game.component';
+import { JoinGameComponent } from './components/join-game/join-game.component';
 
 @NgModule({
-  declarations: [AppComponent, GameComponent, ConnectionComponent],
+  declarations: [AppComponent, GameComponent, ConnectionComponent, CreateGameComponent, JoinGameComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
