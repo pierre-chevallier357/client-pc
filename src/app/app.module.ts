@@ -12,9 +12,18 @@ import { ConnectionComponent } from './components/connection/connection.componen
 import { MatInputModule } from '@angular/material/input';
 import { CreateGameComponent } from './components/create-game/create-game.component';
 import { JoinGameComponent } from './components/join-game/join-game.component';
+import { WaitingPlayerComponent } from './components/waiting-player/waiting-player.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
-  declarations: [AppComponent, GameComponent, ConnectionComponent, CreateGameComponent, JoinGameComponent],
+  declarations: [
+    AppComponent,
+    GameComponent,
+    ConnectionComponent,
+    CreateGameComponent,
+    JoinGameComponent,
+    WaitingPlayerComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -25,6 +34,7 @@ import { JoinGameComponent } from './components/join-game/join-game.component';
     ReactiveFormsModule,
     AppRoutingModule,
     MatInputModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

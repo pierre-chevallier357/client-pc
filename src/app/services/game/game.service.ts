@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 export class GameService {
   private backendUrl = environment.apiUrl;
   private createdGameId: number;
+  private joinedGameId: any;
 
   constructor() {}
 
@@ -24,10 +25,20 @@ export class GameService {
     const url = await fetch(this.backendUrl + 'creation-partie/' + playerId + '&' + numberOfTurns);
     let gameId: number = Number(await url.text());
     this.createdGameId = gameId;
+    console.log('[GameService] [createNewGame] createdGameId: ', this.createdGameId);
     return gameId;
   }
 
   getCreatedGameId(): number {
+    console.log('[GameService] [getCreatedGameId] createdGameId: ', this.createdGameId);
     return this.createdGameId;
+  }
+
+  getJoinedGameId(): number {
+    return this.joinedGameId;
+  }
+
+  setJoinedGameId(id: any) {
+    this.joinedGameId = id;
   }
 }

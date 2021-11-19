@@ -1,6 +1,5 @@
 import { PlayerService } from './../../services/player/player.service';
 import { Component, OnInit } from '@angular/core';
-import { Player } from 'src/app/models/player/player.model';
 
 @Component({
   selector: 'app-game',

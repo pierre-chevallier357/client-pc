@@ -18,7 +18,7 @@ export class ConnectionComponent implements OnInit {
   createPlayer() {
     this.playerService.createPlayer(this.firstname.value).then((id) => {
       this.playerId = id;
-      this.playerService.setCreatingPlayerId(id);
+      this.playerService.setPlayerId(id);
     });
   }
 }

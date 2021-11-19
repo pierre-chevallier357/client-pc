@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class PlayerService {
   private backendUrl = environment.apiUrl;
-  private creatingPlayerId: number;
+  private playerId: number;
 
   constructor() {}
 
@@ -22,15 +22,27 @@ export class PlayerService {
   async createPlayer(firstname: string): Promise<number> {
     const url = await fetch(this.backendUrl + 'creation-joueur/' + firstname);
     let playerId: number = Number(await url.text());
-    this.creatingPlayerId = playerId;
+    this.playerId = playerId;
     return playerId;
   }
 
-  setCreatingPlayerId(id: number) {
-    this.creatingPlayerId = id;
+  setPlayerId(id: number) {
+    this.playerId = id;
   }
 
-  getCreatingPlayerId(): number {
-    return this.creatingPlayerId;
+  getPlayerId(): number {
+    return this.playerId;
+  }
+
+  async waitForOtherPlayer(gameId: number, playerId: number): Promise<boolean> {
+    const url = await fetch(this.backendUrl + 'attente-connection/' + gameId + '&' + playerId);
+    let otherPlayerJoined: boolean = Boolean(await url.text());
+    return otherPlayerJoined;
+  }
+
+  async joinGame(gameId: number, playerId: number): Promise<boolean> {
+    const url = await fetch(this.backendUrl + 'rejoindrePartie/' + gameId + '&' + playerId);
+    let playerJoined: boolean = Boolean(await url.text());
+    return playerJoined;
   }
 }

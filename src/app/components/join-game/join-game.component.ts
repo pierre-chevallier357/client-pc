@@ -1,6 +1,7 @@
+import { Router } from '@angular/router';
+import { PlayerService } from './../../services/player/player.service';
 import { GameService } from 'src/app/services/game/game.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-join-game',
@@ -10,9 +11,11 @@ import { FormControl } from '@angular/forms';
 export class JoinGameComponent implements OnInit {
   gamesIds: number[];
   gamesIdsButtonPressed: boolean = false;
-  selectedGameId = new FormControl('');
+  selectedGameId: number;
+  playerId: number;
+  disableSelect: boolean = true;
 
-  constructor(private gameService: GameService) {}
+  constructor(private gameService: GameService, private playerService: PlayerService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -21,5 +24,16 @@ export class JoinGameComponent implements OnInit {
       this.gamesIds = gamesIds.map((game) => game);
       this.gamesIdsButtonPressed = true;
     });
+  }
+
+  getCreatorGameId() {
+    this.playerId = this.playerService.getPlayerId();
+  }
+
+  joinGame() {
+    let url;
+    this.playerService
+      .joinGame(this.selectedGameId, this.playerId)
+      .then(() => this.router.navigateByUrl('game/' + this.selectedGameId));
   }
 }

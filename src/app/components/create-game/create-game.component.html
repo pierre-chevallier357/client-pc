@@ -9,9 +9,5 @@
 </mat-form-field>
 <p>Nb tours : {{ numberOfTurns }}</p>
 <p>PlayerId : {{ playerId }}</p>
-
 <p>GameId : {{ gameId }}</p>
-
-<button mat-button [disabled]="numberOfTurns === undefined" (click)="getPlayerId(); createNewGame()">
-  Créer la partie
-</button>
+<button mat-button [disabled]="numberOfTurns === undefined" (click)="waitForOtherPlayer()">Créer la partie</button>
