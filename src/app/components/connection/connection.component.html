@@ -3,10 +3,10 @@
   <input matInput [formControl]="firstname" placeholder="Indiquez votre nom" />
 </mat-form-field>
 <br /><br />
-<button mat-raised-button [disabled]="firstname.value === ''" [routerLink]="'/create-game'" (click)="createPlayer()">
+<button mat-raised-button [disabled]="firstname.value === ''" (click)="selectedCreateNewGame = true; createPlayer()">
   Créer une partie
 </button>
 
-<button mat-raised-button [disabled]="firstname.value === ''" [routerLink]="'/join-game'" (click)="createPlayer()">
+<button mat-raised-button [disabled]="firstname.value === ''" (click)="selectedCreateNewGame = false; createPlayer()">
   Rejoindre une partie
 </button>

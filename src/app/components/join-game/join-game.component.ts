@@ -16,6 +16,7 @@ export class JoinGameComponent implements OnInit {
   constructor(private gameService: GameService, private playerService: PlayerService, private router: Router) {}
 
   ngOnInit(): void {
+    this.getPlayerId();
     this.getAllGamesIds();
   }
 
@@ -28,12 +29,11 @@ export class JoinGameComponent implements OnInit {
     return receivedGamesIds;
   }
 
-  getGameId() {
+  getPlayerId() {
     this.playerId = this.playerService.getPlayerId();
   }
 
   joinGame() {
-    let url;
     this.playerService
       .joinGame(this.selectedGameId, this.playerId)
       .then(() => this.router.navigateByUrl('game/' + this.selectedGameId));

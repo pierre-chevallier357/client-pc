@@ -1,5 +1,6 @@
 import { PlayerService } from './../../services/player/player.service';
 import { Component, OnInit } from '@angular/core';
+import { Strategy } from 'src/app/models/strategy/strategy.model';
 
 @Component({
   selector: 'app-game',
@@ -7,26 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./game.component.scss'],
 })
 export class GameComponent implements OnInit {
-  selectedStrategie: string;
-  strategiesList: string[] = [
-    'Donnant donnant',
-    'Donnant donnant/aléatoire',
-    'Donnant pour deux donnants et aléatoire',
-    'Donnant pour deux donnants',
-    'Sondeur naïf',
-    'Sondeur repentant',
-    'Pacificateur naïf',
-    'Vrai pacificateur',
-    'Aléatoire',
-    'Toujours trahir',
-    'Toujours coopérer',
-    'Rancunier',
-    'Pavlov',
-    'Pavlov/aléatoire',
-    'Adaptatif',
-    'Graduel',
-    'Donnant donnant soupçonneux',
-    'Rancunier doux',
+  selectedStrategy: Strategy;
+  strategiesList: Strategy[] = [
+    { id: 1, name: 'Aléatoire' },
+    { id: 2, name: 'Donnant pour deux donnants' },
+    { id: 3, name: 'Donnant pour deux donnants et aléatoire' },
+    { id: 4, name: 'Donnant donnant' },
+    { id: 5, name: 'Donnant donnant/aléatoire' },
+    { id: 6, name: 'Pacificateur naïf' },
+    { id: 7, name: 'Rancunier' },
+    { id: 8, name: 'Sondeur naïf' },
+    { id: 9, name: 'Sondeur repentant' },
+    { id: 10, name: 'Toujours coopérer' },
+    { id: 11, name: 'Toujours trahir' },
+    { id: 12, name: 'Vrai pacificateur' },
   ];
   selectedDecision: string;
   player1Score: number = 0;
@@ -34,9 +29,6 @@ export class GameComponent implements OnInit {
   currentTurn: number = 0;
   hasAnyPlayerGivenUp: boolean = false;
   playersIds: number[];
-
-  // To communicate with the back-end
-  // See this link : https://angular.io/guide/http
 
   constructor(private playerService: PlayerService) {
     //this.getPlayers();

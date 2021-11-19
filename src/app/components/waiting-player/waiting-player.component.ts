@@ -17,7 +17,6 @@ export class WaitingPlayerComponent implements OnInit {
   ngOnInit(): void {
     this.getGameId();
     this.getPlayerId();
-    console.log('[WaitingPlayerComponent] gameId: ', this.gameId, 'getPlayerId: ', this.playerId);
     this.waitForOtherPlayer();
   }
 
@@ -31,7 +30,6 @@ export class WaitingPlayerComponent implements OnInit {
 
   async waitForOtherPlayer() {
     this.getGameId();
-    console.log('[WaitingPlayerComponent] gameId: ', this.gameId);
     this.playerService
       .waitForOtherPlayer(this.gameId, this.playerId)
       .then(() => this.router.navigateByUrl('game/' + this.gameId));

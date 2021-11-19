@@ -24,7 +24,6 @@ export class GameService {
     const url = await fetch(this.backendUrl + 'creation-partie/' + playerId + '&' + numberOfTurns);
     let gameId: number = Number(await url.text());
     this.gameId = gameId;
-    console.log('[GameService] [createNewGame] ameId: ', this.gameId);
     return gameId;
   }
 

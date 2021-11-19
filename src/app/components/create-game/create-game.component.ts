@@ -24,7 +24,6 @@ export class CreateGameComponent implements AfterViewInit {
   async createNewGame(): Promise<boolean> {
     await this.gameService.createNewGame(this.playerId, this.numberOfTurns).then((gameId) => {
       this.gameId = gameId;
-      console.log('[CreateGameComponent] gameId:', this.gameId);
     });
     return true;
   }

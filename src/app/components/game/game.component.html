@@ -1,13 +1,13 @@
 <h2>Stratégie</h2>
 <mat-form-field appearance="fill">
   <mat-label>Sélectionner</mat-label>
-  <mat-select [(ngModel)]="selectedStrategie" name="selectedStrategie">
-    <mat-option *ngFor="let strategie of strategiesList" [value]="strategie">
-      {{ strategie }}
+  <mat-select [(ngModel)]="selectedStrategy" name="selectedStrategy">
+    <mat-option *ngFor="let strategy of strategiesList" [value]="strategy">
+      {{ strategy.name }}
     </mat-option>
   </mat-select>
 </mat-form-field>
-<p>Stratégie sélectionnée : {{ selectedStrategie }}</p>
+<p>Stratégie sélectionnée : {{ selectedStrategy.name }}</p>
 
 <h2>Décision</h2>
 <button mat-raised-button (click)="selectedDecision = 'cooperer'">Coopérer</button>
@@ -21,3 +21,5 @@
 <h2>Tour n°{{ currentTurn }}</h2>
 
 <p>Players : {{ playersIds }}</p>
+
+<hr />
