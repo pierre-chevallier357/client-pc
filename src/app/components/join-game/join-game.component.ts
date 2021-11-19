@@ -1,5 +1,6 @@
 import { GameService } from 'src/app/services/game/game.service';
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-join-game',
@@ -8,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JoinGameComponent implements OnInit {
   gamesIds: number[];
+  gamesIdsButtonPressed: boolean = false;
+  selectedGameId = new FormControl('');
 
   constructor(private gameService: GameService) {}
 
@@ -16,6 +19,7 @@ export class JoinGameComponent implements OnInit {
   getAllGamesIds() {
     return this.gameService.getAllGamesIds().then((gamesIds) => {
       this.gamesIds = gamesIds.map((game) => game);
+      this.gamesIdsButtonPressed = true;
     });
   }
 }

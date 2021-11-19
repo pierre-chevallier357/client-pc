@@ -1,1 +1,8 @@
-<p>join-game works!</p>
+<button mat-button (click)="getAllGamesIds()">Afficher les parties disponibles</button>
+<p>{{ gamesIds }}</p>
+<mat-form-field *ngIf="gamesIdsButtonPressed">
+  <input matInput [formControl]="selectedGameId" placeholder="Indiquez l'id de la partie" />
+</mat-form-field>
+<mat-form-field *ngIf="!gamesIdsButtonPressed">
+  <input matInput [disabled]="true" placeholder="Indiquez l'id de la partie" />
+</mat-form-field>

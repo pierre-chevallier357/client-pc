@@ -10,6 +10,8 @@
 <p>Nb tours : {{ numberOfTurns }}</p>
 <p>PlayerId : {{ playerId }}</p>
 
+<p>GameId : {{ gameId }}</p>
+
 <button mat-button [disabled]="numberOfTurns === undefined" (click)="getPlayerId(); createNewGame()">
   Créer la partie
 </button>
