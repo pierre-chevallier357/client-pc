@@ -1,8 +1,5 @@
 import { environment } from './../../../environments/environment';
-import { Player } from './../../models/player/player.model';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,12 +8,12 @@ export class PlayerService {
   private backendUrl = environment.apiUrl;
   private creatingPlayerId: number;
 
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
-  async getAllPlayers(): Promise<number[]> {
+  async getAllPlayersIds(): Promise<number[]> {
     const url = await fetch(this.backendUrl + 'all-joueur-by-id');
-    let temp: String = await url.text();
-    let players = temp.split('&').map(function (item) {
+    let concatenatedPlayers: String = await url.text();
+    let players = concatenatedPlayers.split('&').map(function (item) {
       return parseInt(item, 10);
     });
     return players;
@@ -25,6 +22,7 @@ export class PlayerService {
   async createPlayer(firstname: string): Promise<number> {
     const url = await fetch(this.backendUrl + 'creation-joueur/' + firstname);
     let playerId: number = Number(await url.text());
+    this.creatingPlayerId = playerId;
     return playerId;
   }
 

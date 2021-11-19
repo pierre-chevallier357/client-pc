@@ -1,15 +1,21 @@
+import { GameService } from 'src/app/services/game/game.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-join-game',
   templateUrl: './join-game.component.html',
-  styleUrls: ['./join-game.component.scss']
+  styleUrls: ['./join-game.component.scss'],
 })
 export class JoinGameComponent implements OnInit {
+  gamesIds: number[];
 
-  constructor() { }
+  constructor(private gameService: GameService) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  getAllGamesIds() {
+    return this.gameService.getAllGamesIds().then((gamesIds) => {
+      this.gamesIds = gamesIds.map((game) => game);
+    });
   }
-
 }

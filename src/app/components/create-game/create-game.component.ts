@@ -1,5 +1,5 @@
 import { PlayerService } from './../../services/player/player.service';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { GameService } from 'src/app/services/game/game.service';
 
 @Component({
@@ -7,32 +7,30 @@ import { GameService } from 'src/app/services/game/game.service';
   templateUrl: './create-game.component.html',
   styleUrls: ['./create-game.component.scss'],
 })
-export class CreateGameComponent implements OnInit {
+export class CreateGameComponent implements AfterViewInit {
   gameId: number;
-  creatingPlayerId: number;
+  playerId: number;
   numberOfTurns: number;
   turnsList: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   constructor(private gameService: GameService, private playerService: PlayerService) {}
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.getPlayerId();
+    this.getGameId();
   }
-  /*
-  getAllGamesIds() {
-    return this.gameService.getAllGames().subscribe((response) => {
-      this.gamesIds = response.map((game) => game.id);
-    });
-  }
-*/
+
   createNewGame() {
-    this.gameService.createNewGame(this.creatingPlayerId, this.numberOfTurns).subscribe((game) => {
-      console.log(game.id);
-      this.gameId = game.id;
+    this.gameService.createNewGame(this.playerId, this.numberOfTurns).then((gameId) => {
+      this.gameId = gameId;
     });
   }
 
   getPlayerId() {
-    this.creatingPlayerId = this.playerService.getCreatingPlayerId();
+    this.playerId = this.playerService.getCreatingPlayerId();
+  }
+
+  getGameId() {
+    this.gameId = this.gameService.getCreatedGameId();
   }
 }

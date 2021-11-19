@@ -9,7 +9,7 @@ import { FormControl } from '@angular/forms';
 })
 export class ConnectionComponent implements OnInit {
   firstname = new FormControl('');
-  creatingPlayerId: number;
+  playerId: number;
 
   constructor(private playerService: PlayerService) {}
 
@@ -17,7 +17,7 @@ export class ConnectionComponent implements OnInit {
 
   createPlayer() {
     this.playerService.createPlayer(this.firstname.value).then((id) => {
-      this.creatingPlayerId = id;
+      this.playerId = id;
       this.playerService.setCreatingPlayerId(id);
     });
   }
