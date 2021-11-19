@@ -1,4 +1,4 @@
-<h2>Tours</h2>
+<h2>Nombre de tours</h2>
 <mat-form-field appearance="fill">
   <mat-label>Sélectionner</mat-label>
   <mat-select [(ngModel)]="numberOfTurns" name="numberOfTurn">
@@ -7,7 +7,7 @@
     </mat-option>
   </mat-select>
 </mat-form-field>
-<p>Nb tours : {{ numberOfTurns }}</p>
-<p>PlayerId : {{ playerId }}</p>
-<p>GameId : {{ gameId }}</p>
-<button mat-button [disabled]="numberOfTurns === undefined" (click)="waitForOtherPlayer()">Créer la partie</button>
+<br />
+<button mat-raised-button [disabled]="numberOfTurns === undefined" (click)="waitForOtherPlayer()">
+  Créer la partie
+</button>

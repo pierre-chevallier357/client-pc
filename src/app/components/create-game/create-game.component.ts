@@ -34,7 +34,7 @@ export class CreateGameComponent implements AfterViewInit {
   }
 
   getGameId() {
-    this.gameId = this.gameService.getCreatedGameId();
+    this.gameId = this.gameService.getGameId();
   }
 
   async waitForOtherPlayer() {

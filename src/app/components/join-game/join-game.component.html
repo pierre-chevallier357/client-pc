@@ -1,16 +1,11 @@
-<button mat-button (click)="getAllGamesIds(); disableSelect = false; getCreatorGameId()">
-  Afficher les parties disponibles
-</button>
-<p>{{ gamesIds }}</p>
+<p>Parties disponibles : {{ gamesIds }}</p>
 <mat-form-field appearance="fill">
-  <mat-label>Sélectionner partie</mat-label>
-  <mat-select [(ngModel)]="selectedGameId" [disabled]="disableSelect">
+  <mat-label>Sélectionner une partie</mat-label>
+  <mat-select [(ngModel)]="selectedGameId">
     <mat-option *ngFor="let game of gamesIds" [value]="game">
       {{ game }}
     </mat-option>
   </mat-select>
 </mat-form-field>
-<button mat-button [disabled]="selectedGameId === undefined" (click)="joinGame()">Rejoindre la partie</button>
-<p>selected game id : {{ selectedGameId }}</p>
-<p>Creator game id : {{ playerId }}</p>
-<!-- [routerLink]="'/game'" -->
+<br />
+<button mat-raised-button [disabled]="selectedGameId === undefined" (click)="joinGame()">Rejoindre la partie</button>

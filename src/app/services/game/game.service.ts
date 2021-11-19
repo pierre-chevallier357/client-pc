@@ -6,8 +6,7 @@ import { environment } from 'src/environments/environment';
 })
 export class GameService {
   private backendUrl = environment.apiUrl;
-  private createdGameId: number;
-  private joinedGameId: any;
+  private gameId: number;
 
   constructor() {}
 
@@ -24,21 +23,16 @@ export class GameService {
   async createNewGame(playerId: number, numberOfTurns: number): Promise<number> {
     const url = await fetch(this.backendUrl + 'creation-partie/' + playerId + '&' + numberOfTurns);
     let gameId: number = Number(await url.text());
-    this.createdGameId = gameId;
-    console.log('[GameService] [createNewGame] createdGameId: ', this.createdGameId);
+    this.gameId = gameId;
+    console.log('[GameService] [createNewGame] ameId: ', this.gameId);
     return gameId;
   }
 
-  getCreatedGameId(): number {
-    console.log('[GameService] [getCreatedGameId] createdGameId: ', this.createdGameId);
-    return this.createdGameId;
+  getGameId(): number {
+    return this.gameId;
   }
 
-  getJoinedGameId(): number {
-    return this.joinedGameId;
-  }
-
-  setJoinedGameId(id: any) {
-    this.joinedGameId = id;
+  setGameId(id: any) {
+    this.gameId = id;
   }
 }

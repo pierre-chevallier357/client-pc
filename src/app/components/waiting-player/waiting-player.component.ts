@@ -26,7 +26,7 @@ export class WaitingPlayerComponent implements OnInit {
   }
 
   getGameId() {
-    this.gameId = this.gameService.getCreatedGameId();
+    this.gameId = this.gameService.getGameId();
   }
 
   async waitForOtherPlayer() {

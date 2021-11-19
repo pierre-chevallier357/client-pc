@@ -10,23 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JoinGameComponent implements OnInit {
   gamesIds: number[];
-  gamesIdsButtonPressed: boolean = false;
   selectedGameId: number;
   playerId: number;
-  disableSelect: boolean = true;
 
   constructor(private gameService: GameService, private playerService: PlayerService, private router: Router) {}
 
-  ngOnInit(): void {}
-
-  getAllGamesIds() {
-    return this.gameService.getAllGamesIds().then((gamesIds) => {
-      this.gamesIds = gamesIds.map((game) => game);
-      this.gamesIdsButtonPressed = true;
-    });
+  ngOnInit(): void {
+    this.getAllGamesIds();
   }
 
-  getCreatorGameId() {
+  async getAllGamesIds(): Promise<number[]> {
+    let receivedGamesIds: number[];
+    await this.gameService.getAllGamesIds().then((gamesIds) => {
+      receivedGamesIds = gamesIds.map((game) => game);
+    });
+    this.gamesIds = receivedGamesIds;
+    return receivedGamesIds;
+  }
+
+  getGameId() {
     this.playerId = this.playerService.getPlayerId();
   }
 
