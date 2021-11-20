@@ -59,15 +59,17 @@ export class PlayerService {
     return turnPlayed;
   }
 
-  async getTurnResultAndOpponentsLastTurn(gameId: number, playerId: number): Promise<{ number; string }> {
-    const url = await fetch(this.backendUrl + 'resultat/' + gameId + '&' + playerId);
-    let concatenatedResult: String = await url.text();
-    console.log(concatenatedResult);
-    let resultAndOpponentsLastTurn;
-    concatenatedResult.split('&').map(function (result, oppLastTurn) {
-      resultAndOpponentsLastTurn = { result, oppLastTurn };
-      console.log('result:', result, '& oppLastTurn:', oppLastTurn);
-    });
-    return resultAndOpponentsLastTurn;
+  async getPlayerScore(gameId: number, playerId: number): Promise<number> {
+    const url = await fetch(this.backendUrl + 'resultat-tour/' + gameId + '&' + playerId);
+    let playerScore: number = Number(await url.text());
+    return playerScore;
+  }
+
+  async getOpponentsLastTurn(gameId: number, playerId: number): Promise<string> {
+    const url = await fetch(this.backendUrl + 'dernier-coup-adv/' + gameId + '&' + playerId);
+    console.log('Sent url:', url.url);
+    let opponentsLastTurn: string = await url.text();
+    console.log('Url return :', opponentsLastTurn);
+    return opponentsLastTurn;
   }
 }

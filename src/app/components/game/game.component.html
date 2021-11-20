@@ -1,5 +1,6 @@
 <p>Décision sélectionnée : {{ selectedDecision }}</p>
-<p>Players : {{ playersIds }}</p>
+<p>OpponentsLastTurn : {{ opponentsLastTurn }}</p>
+<p>playerScore : {{ playerScore }}</p>
 <!--
 <h2>Score des joueurs</h2>
 <p>Joueur 1 : {{ player1Score }}</p>
@@ -11,8 +12,8 @@
 <hr />
 
 <h2>Décision</h2>
-<button mat-raised-button (click)="selectedDecision = 'COOPERER'; sendTurnDecision()">Coopérer</button>
-<button mat-raised-button (click)="selectedDecision = 'TRAHIR'; sendTurnDecision()">Trahir</button>
+<button mat-raised-button (click)="selectedDecision = 'COOPERER'; playTurnAndGetResults()">Coopérer</button>
+<button mat-raised-button (click)="selectedDecision = 'TRAHIR'; playTurnAndGetResults()">Trahir</button>
 <button mat-raised-button (click)="openSnackBar()">Arrêter de jouer</button>
 <span *ngIf="pushedGiveUpButton">
   <hr />

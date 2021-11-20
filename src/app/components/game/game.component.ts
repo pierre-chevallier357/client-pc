@@ -27,9 +27,11 @@ export class GameComponent implements OnInit {
     { id: 12, name: 'Vrai pacificateur' },
   ];
   selectedDecision: string;
+  opponentsLastTurn: string;
+  playerScore: number = 0;
   /*
   playerScore: number = 0;
-  currentTurn: number = 0;
+  currentTurnValue: number = 0;
   hasPlayerGivenUp: boolean = false;
   */
   playersIds: number[];
@@ -73,18 +75,30 @@ export class GameComponent implements OnInit {
       '& selectedDecision:',
       this.selectedDecision
     );
-    await this.playerService
-      .sendTurnDecision(this.getGameId(), this.getPlayerId(), this.selectedDecision)
-      .then(() => this.playTheTurn());
+    await this.playerService.sendTurnDecision(this.getGameId(), this.getPlayerId(), this.selectedDecision);
   }
 
   async playTheTurn() {
-    this.playerService
-      .playTheTurn(this.getGameId(), this.getPlayerId())
-      .then(() => this.getTurnResultAndOpponentsLastTurn());
+    await this.playerService.playTheTurn(this.getGameId(), this.getPlayerId());
   }
 
-  async getTurnResultAndOpponentsLastTurn() {
-    this.playerService.getTurnResultAndOpponentsLastTurn(this.getGameId(), this.getPlayerId());
+  async getPlayerScore(): Promise<number> {
+    let turnResult = await this.playerService.getPlayerScore(this.getGameId(), this.getPlayerId());
+    return turnResult;
+  }
+
+  async getOpponentsLastTurn(): Promise<string> {
+    let opponentsLastTurn = await this.playerService.getOpponentsLastTurn(this.getGameId(), this.getPlayerId());
+    return opponentsLastTurn;
+  }
+
+  async playTurnAndGetResults() {
+    await this.sendTurnDecision();
+    await this.playTheTurn();
+    let playerScore = await this.getPlayerScore();
+    this.playerScore = playerScore;
+    let opponentsLastTurn = await this.getOpponentsLastTurn();
+    console.log('opponentsLastTurn:', opponentsLastTurn);
+    this.opponentsLastTurn = opponentsLastTurn;
   }
 }
