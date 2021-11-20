@@ -16,6 +16,7 @@ export class PlayerService {
     let players = concatenatedPlayers.split('&').map(function (item) {
       return parseInt(item, 10);
     });
+    players.splice(-1, 1); // Removes the last player which is NaN
     return players;
   }
 
@@ -44,5 +45,29 @@ export class PlayerService {
     const url = await fetch(this.backendUrl + 'rejoindrePartie/' + gameId + '&' + playerId);
     let playerJoined: boolean = Boolean(await url.text());
     return playerJoined;
+  }
+
+  async sendTurnDecision(gameId: number, playerId: number, turn: string): Promise<boolean> {
+    const url = await fetch(this.backendUrl + 'coup/' + gameId + '&' + playerId + '&' + turn);
+    let turnSent: boolean = Boolean(await url.text());
+    return turnSent;
+  }
+
+  async playTheTurn(gameId: number, playerId: number): Promise<boolean> {
+    const url = await fetch(this.backendUrl + 'partie/' + gameId + '&' + playerId);
+    let turnPlayed: boolean = Boolean(await url.text());
+    return turnPlayed;
+  }
+
+  async getTurnResultAndOpponentsLastTurn(gameId: number, playerId: number): Promise<{ number; string }> {
+    const url = await fetch(this.backendUrl + 'resultat/' + gameId + '&' + playerId);
+    let concatenatedResult: String = await url.text();
+    console.log(concatenatedResult);
+    let resultAndOpponentsLastTurn;
+    concatenatedResult.split('&').map(function (result, oppLastTurn) {
+      resultAndOpponentsLastTurn = { result, oppLastTurn };
+      console.log('result:', result, '& oppLastTurn:', oppLastTurn);
+    });
+    return resultAndOpponentsLastTurn;
   }
 }

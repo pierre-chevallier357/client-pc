@@ -16,7 +16,7 @@ export class GameService {
     let games = concatenatedGames.split('&').map(function (item) {
       return parseInt(item, 10);
     });
-    games.splice(-1, 1); // Removes the last "game" which is NaN
+    games.splice(-1, 1); // Removes the last game which is NaN
     return games;
   }
 

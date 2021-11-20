@@ -14,6 +14,8 @@ import { CreateGameComponent } from './components/create-game/create-game.compon
 import { JoinGameComponent } from './components/join-game/join-game.component';
 import { WaitingPlayerComponent } from './components/waiting-player/waiting-player.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { EndGameWarningComponent } from './components/end-game-warning/end-game-warning.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     CreateGameComponent,
     JoinGameComponent,
     WaitingPlayerComponent,
+    EndGameWarningComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     AppRoutingModule,
     MatInputModule,
     MatProgressSpinnerModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

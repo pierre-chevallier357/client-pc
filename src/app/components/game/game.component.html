@@ -1,25 +1,28 @@
-<h2>Stratégie</h2>
-<mat-form-field appearance="fill">
-  <mat-label>Sélectionner</mat-label>
-  <mat-select [(ngModel)]="selectedStrategy" name="selectedStrategy">
-    <mat-option *ngFor="let strategy of strategiesList" [value]="strategy">
-      {{ strategy.name }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-<p>Stratégie sélectionnée : {{ selectedStrategy.name }}</p>
-
-<h2>Décision</h2>
-<button mat-raised-button (click)="selectedDecision = 'cooperer'">Coopérer</button>
-<button mat-raised-button (click)="selectedDecision = 'trahir'">Trahir</button>
 <p>Décision sélectionnée : {{ selectedDecision }}</p>
-
+<p>Players : {{ playersIds }}</p>
+<!--
 <h2>Score des joueurs</h2>
 <p>Joueur 1 : {{ player1Score }}</p>
 <p>Joueur 2 : {{ player2Score }}</p>
 
 <h2>Tour n°{{ currentTurn }}</h2>
-
-<p>Players : {{ playersIds }}</p>
+-->
 
 <hr />
+
+<h2>Décision</h2>
+<button mat-raised-button (click)="selectedDecision = 'COOPERER'; sendTurnDecision()">Coopérer</button>
+<button mat-raised-button (click)="selectedDecision = 'TRAHIR'; sendTurnDecision()">Trahir</button>
+<button mat-raised-button (click)="openSnackBar()">Arrêter de jouer</button>
+<span *ngIf="pushedGiveUpButton">
+  <hr />
+  <h2>Stratégie de l'ordinateur</h2>
+  <mat-form-field appearance="fill">
+    <mat-label>Sélectionner</mat-label>
+    <mat-select [(ngModel)]="selectedStrategy" name="selectedStrategy">
+      <mat-option *ngFor="let strategy of strategiesList" [value]="strategy">
+        {{ strategy.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</span>

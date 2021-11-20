@@ -34,6 +34,7 @@ export class JoinGameComponent implements OnInit {
   }
 
   joinGame() {
+    this.gameService.setGameId(this.selectedGameId);
     this.playerService
       .joinGame(this.selectedGameId, this.playerId)
       .then(() => this.router.navigateByUrl('game/' + this.selectedGameId));

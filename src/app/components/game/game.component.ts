@@ -1,6 +1,9 @@
+import { EndGameWarningComponent } from './../end-game-warning/end-game-warning.component';
 import { PlayerService } from './../../services/player/player.service';
 import { Component, OnInit } from '@angular/core';
 import { Strategy } from 'src/app/models/strategy/strategy.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { GameService } from 'src/app/services/game/game.service';
 
 @Component({
   selector: 'app-game',
@@ -24,21 +27,64 @@ export class GameComponent implements OnInit {
     { id: 12, name: 'Vrai pacificateur' },
   ];
   selectedDecision: string;
-  player1Score: number = 0;
-  player2Score: number = 0;
+  /*
+  playerScore: number = 0;
   currentTurn: number = 0;
-  hasAnyPlayerGivenUp: boolean = false;
+  hasPlayerGivenUp: boolean = false;
+  */
   playersIds: number[];
+  pushedGiveUpButton: boolean = false;
 
-  constructor(private playerService: PlayerService) {
-    //this.getPlayers();
+  constructor(private gameService: GameService, private playerService: PlayerService, private snackBar: MatSnackBar) {}
+
+  async ngOnInit(): Promise<void> {
+    await this.getPlayersIds();
+    this.getPlayerId();
+    this.getGameId();
   }
 
-  ngOnInit(): void {}
-
-  getPlayers() {
+  async getPlayersIds() {
     return this.playerService.getAllPlayersIds().then((response) => {
       this.playersIds = response;
     });
+  }
+
+  getPlayerId() {
+    return this.playerService.getPlayerId();
+  }
+
+  getGameId() {
+    return this.gameService.getGameId();
+  }
+
+  openSnackBar() {
+    this.pushedGiveUpButton = true;
+    this.snackBar.openFromComponent(EndGameWarningComponent, {
+      duration: 8000,
+    });
+  }
+
+  async sendTurnDecision() {
+    console.log(
+      'gameId:',
+      this.getGameId(),
+      '& playerId:',
+      this.getPlayerId(),
+      '& selectedDecision:',
+      this.selectedDecision
+    );
+    await this.playerService
+      .sendTurnDecision(this.getGameId(), this.getPlayerId(), this.selectedDecision)
+      .then(() => this.playTheTurn());
+  }
+
+  async playTheTurn() {
+    this.playerService
+      .playTheTurn(this.getGameId(), this.getPlayerId())
+      .then(() => this.getTurnResultAndOpponentsLastTurn());
+  }
+
+  async getTurnResultAndOpponentsLastTurn() {
+    this.playerService.getTurnResultAndOpponentsLastTurn(this.getGameId(), this.getPlayerId());
   }
 }
