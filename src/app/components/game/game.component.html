@@ -1,17 +1,14 @@
-<p>Décision sélectionnée : {{ selectedDecision }}</p>
-<p>OpponentsLastTurn : {{ opponentsLastTurn }}</p>
-<p>playerScore : {{ playerScore }}</p>
-<!--
-<h2>Score des joueurs</h2>
-<p>Joueur 1 : {{ player1Score }}</p>
-<p>Joueur 2 : {{ player2Score }}</p>
-
-<h2>Tour n°{{ currentTurn }}</h2>
--->
+<p>Dernier coup de l'adversaire : {{ opponentsLastTurn }}</p>
+<p>Votre score : {{ playerScore }}</p>
+<p>Tour n°{{ turnCounter }}</p>
+<p>Nombre de tours : {{ numberOfTurns }}</p>
 
 <hr />
 
-<h2>Décision</h2>
+<br />
+<br />
+<h2 align="center">Décision</h2>
+<br />
 <button mat-raised-button (click)="selectedDecision = 'COOPERER'; playTurnAndGetResults()">Coopérer</button>
 <button mat-raised-button (click)="selectedDecision = 'TRAHIR'; playTurnAndGetResults()">Trahir</button>
 <button mat-raised-button (click)="openSnackBar()">Arrêter de jouer</button>

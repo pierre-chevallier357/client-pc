@@ -29,9 +29,9 @@ export class GameComponent implements OnInit {
   selectedDecision: string;
   opponentsLastTurn: string;
   playerScore: number = 0;
+  numberOfTurns: number;
+  turnCounter: number = 1;
   /*
-  playerScore: number = 0;
-  currentTurnValue: number = 0;
   hasPlayerGivenUp: boolean = false;
   */
   playersIds: number[];
@@ -43,6 +43,7 @@ export class GameComponent implements OnInit {
     await this.getPlayersIds();
     this.getPlayerId();
     this.getGameId();
+    this.getNumberOfTurns();
   }
 
   async getPlayersIds() {
@@ -100,5 +101,14 @@ export class GameComponent implements OnInit {
     let opponentsLastTurn = await this.getOpponentsLastTurn();
     console.log('opponentsLastTurn:', opponentsLastTurn);
     this.opponentsLastTurn = opponentsLastTurn;
+    this.incrementTurnCounter();
+  }
+
+  incrementTurnCounter() {
+    this.turnCounter++;
+  }
+
+  getNumberOfTurns() {
+    this.numberOfTurns = this.gameService.getNumberOfTurns();
   }
 }
