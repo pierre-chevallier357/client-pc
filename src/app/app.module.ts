@@ -14,9 +14,13 @@ import { CreateGameComponent } from './components/create-game/create-game.compon
 import { JoinGameComponent } from './components/join-game/join-game.component';
 import { WaitingPlayerComponent } from './components/waiting-player/waiting-player.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { EndGameWarningComponent } from './components/end-game-warning/end-game-warning.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { GameResultsComponent } from './components/game-results/game-results.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { EndGameDialogComponent } from './components/end-game-dialog/end-game-dialog.component';
+import { SelectStrategyComponent } from './components/select-strategy/select-strategy.component';
+import { HomeComponent } from './components/home/home.component';
+import { GameRulesComponent } from './components/game-rules/game-rules.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +30,11 @@ import { GameResultsComponent } from './components/game-results/game-results.com
     CreateGameComponent,
     JoinGameComponent,
     WaitingPlayerComponent,
-    EndGameWarningComponent,
     GameResultsComponent,
+    EndGameDialogComponent,
+    SelectStrategyComponent,
+    HomeComponent,
+    GameRulesComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +48,7 @@ import { GameResultsComponent } from './components/game-results/game-results.com
     MatInputModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

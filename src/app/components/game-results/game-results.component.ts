@@ -1,7 +1,7 @@
 import { PlayerService } from './../../services/player/player.service';
 import { GameService } from 'src/app/services/game/game.service';
 import { Component, OnInit } from '@angular/core';
-import { GameResult } from '../../enums/game-result/game-result.enum';
+import { GameResult } from '../../models/game-result/game-result.enum';
 
 @Component({
   selector: 'app-game-results',

@@ -1,4 +1,4 @@
-<p>Prénom</p>
+<h2>Prénom</h2>
 <mat-form-field>
   <input matInput [formControl]="firstname" placeholder="Indiquez votre nom" />
 </mat-form-field>
@@ -6,7 +6,7 @@
 <button mat-raised-button [disabled]="firstname.value === ''" (click)="selectedCreateNewGame = true; createPlayer()">
   Créer une partie
 </button>
-
+&nbsp;
 <button mat-raised-button [disabled]="firstname.value === ''" (click)="selectedCreateNewGame = false; createPlayer()">
   Rejoindre une partie
 </button>

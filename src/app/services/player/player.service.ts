@@ -1,5 +1,6 @@
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
+import { Strategy } from 'src/app/models/strategy/strategy.model';
 
 @Injectable({
   providedIn: 'root',
@@ -69,5 +70,11 @@ export class PlayerService {
     const url = await fetch(this.backendUrl + 'dernier-coup-adv/' + gameId + '&' + playerId);
     let opponentsLastTurn: string = await url.text();
     return opponentsLastTurn;
+  }
+
+  async setComputerStrategy(gameId: number, playerId: number, strategy: Strategy): Promise<boolean> {
+    const url = await fetch(this.backendUrl + 'strategie/' + gameId + '&' + playerId + '&' + strategy.id);
+    let strategySent: boolean = Boolean(await url.text());
+    return strategySent;
   }
 }

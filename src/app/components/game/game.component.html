@@ -8,19 +8,14 @@
 <br />
 <h2 align="center">Décision</h2>
 <br />
-<button mat-raised-button (click)="selectedDecision = 'COOPERER'; playTurnAndGetResults()">Coopérer</button>
-<button mat-raised-button (click)="selectedDecision = 'TRAHIR'; playTurnAndGetResults()">Trahir</button>
-<br />
-<button mat-button (click)="openSnackBar()">Arrêter de jouer</button>
-<span *ngIf="pushedGiveUpButton">
-  <hr />
-  <h2>Stratégie de l'ordinateur</h2>
-  <mat-form-field appearance="fill">
-    <mat-label>Sélectionner</mat-label>
-    <mat-select [(ngModel)]="selectedStrategy" name="selectedStrategy">
-      <mat-option *ngFor="let strategy of strategiesList" [value]="strategy">
-        {{ strategy.name }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-</span>
+<div class="wrapper">
+  <button mat-raised-button (click)="selectedDecision = 'COOPERER'; playTurnAndGetResults()" class="center">
+    Coopérer
+  </button>
+  &nbsp;
+  <button mat-raised-button (click)="selectedDecision = 'TRAHIR'; playTurnAndGetResults()" class="center">
+    Trahir
+  </button>
+  <br />
+  <button mat-button (click)="openDialog()" class="center">Arrêter de jouer</button>
+</div>

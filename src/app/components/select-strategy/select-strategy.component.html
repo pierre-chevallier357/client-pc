@@ -1,0 +1,11 @@
+<h2>Stratégie de l'ordinateur</h2>
+<mat-form-field appearance="fill">
+  <mat-label>Sélectionner</mat-label>
+  <mat-select [(ngModel)]="selectedStrategy" name="selectedStrategy">
+    <mat-option *ngFor="let strategy of strategiesList" [value]="strategy">
+      {{ strategy.name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<br />
+<button mat-button [disabled]="selectedStrategy === undefined" (click)="setComputerStrategy()">Confirmer</button>
