@@ -40,18 +40,19 @@ export class GameComponent implements OnInit {
   constructor(private gameService: GameService, private playerService: PlayerService, private snackBar: MatSnackBar) {}
 
   async ngOnInit(): Promise<void> {
-    await this.getPlayersIds();
+    //await this.getPlayersIds();
+    await this.getNumberOfTurns();
     this.getPlayerId();
     this.getGameId();
     this.getNumberOfTurns();
   }
-
+  /*
   async getPlayersIds() {
     return this.playerService.getAllPlayersIds().then((response) => {
       this.playersIds = response;
     });
   }
-
+  */
   getPlayerId() {
     return this.playerService.getPlayerId();
   }
@@ -68,14 +69,6 @@ export class GameComponent implements OnInit {
   }
 
   async sendTurnDecision() {
-    console.log(
-      'gameId:',
-      this.getGameId(),
-      '& playerId:',
-      this.getPlayerId(),
-      '& selectedDecision:',
-      this.selectedDecision
-    );
     await this.playerService.sendTurnDecision(this.getGameId(), this.getPlayerId(), this.selectedDecision);
   }
 
@@ -99,7 +92,6 @@ export class GameComponent implements OnInit {
     let playerScore = await this.getPlayerScore();
     this.playerScore = playerScore;
     let opponentsLastTurn = await this.getOpponentsLastTurn();
-    console.log('opponentsLastTurn:', opponentsLastTurn);
     this.opponentsLastTurn = opponentsLastTurn;
     this.incrementTurnCounter();
   }
@@ -108,7 +100,7 @@ export class GameComponent implements OnInit {
     this.turnCounter++;
   }
 
-  getNumberOfTurns() {
-    this.numberOfTurns = this.gameService.getNumberOfTurns();
+  async getNumberOfTurns() {
+    this.numberOfTurns = await this.gameService.getNumberOfTurns(this.getGameId());
   }
 }

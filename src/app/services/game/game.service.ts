@@ -7,7 +7,6 @@ import { environment } from 'src/environments/environment';
 export class GameService {
   private backendUrl = environment.apiUrl;
   private gameId: number;
-  private numberOfTurns: number;
 
   constructor() {}
 
@@ -22,7 +21,6 @@ export class GameService {
   }
 
   async createNewGame(playerId: number, numberOfTurns: number): Promise<number> {
-    this.setNumberOfTurns(numberOfTurns);
     const url = await fetch(this.backendUrl + 'creation-partie/' + playerId + '&' + numberOfTurns);
     let gameId: number = Number(await url.text());
     this.gameId = gameId;
@@ -37,11 +35,9 @@ export class GameService {
     this.gameId = id;
   }
 
-  getNumberOfTurns(): number {
-    return this.numberOfTurns;
-  }
-
-  setNumberOfTurns(numberOfTurns: number) {
-    this.numberOfTurns = numberOfTurns;
+  async getNumberOfTurns(gameId: number): Promise<number> {
+    const url = await fetch(this.backendUrl + 'nb-coups/' + gameId);
+    let numberOfTurns: number = Number(await url.text());
+    return numberOfTurns;
   }
 }

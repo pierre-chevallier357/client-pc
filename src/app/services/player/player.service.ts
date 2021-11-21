@@ -67,9 +67,7 @@ export class PlayerService {
 
   async getOpponentsLastTurn(gameId: number, playerId: number): Promise<string> {
     const url = await fetch(this.backendUrl + 'dernier-coup-adv/' + gameId + '&' + playerId);
-    console.log('Sent url:', url.url);
     let opponentsLastTurn: string = await url.text();
-    console.log('Url return :', opponentsLastTurn);
     return opponentsLastTurn;
   }
 }
