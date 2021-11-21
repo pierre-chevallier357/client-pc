@@ -44,11 +44,9 @@ export class GameService {
   async getGameResults(gameId: number, playerId: number): Promise<number[]> {
     const url = await fetch(this.backendUrl + 'resultat-final/' + gameId + '&' + playerId);
     let concatenatedResults: string = await url.text();
-    console.log('concatenatedResults:', concatenatedResults);
     let results = concatenatedResults.split('&').map(function (item) {
       return parseInt(item, 10);
     });
-    console.log('results:', results);
     return results;
   }
 }
