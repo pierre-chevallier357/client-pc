@@ -84,9 +84,5 @@ export class GameComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(EndGameDialogComponent);
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
   }
 }

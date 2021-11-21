@@ -3,7 +3,9 @@
 <h2 *ngIf="playerResult === result.Loss" align="center">Dommage, vous avez perdu...</h2>
 <hr />
 <h2 align="center">Score</h2>
-<h2 align="center">Vous &nbsp; &nbsp; &nbsp; {{ scores[0] }} - {{ scores[1] }} &nbsp; &nbsp; &nbsp; Adversaire</h2>
+<h2 align="center" *ngIf="scores !== undefined">
+  Vous &nbsp; &nbsp; &nbsp; {{ scores[0] }} - {{ scores[1] }} &nbsp; &nbsp; &nbsp; Adversaire
+</h2>
 <br />
 <br />
 <div class="wrapper">
