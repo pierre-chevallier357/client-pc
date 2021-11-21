@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { EndGameWarningComponent } from './../end-game-warning/end-game-warning.component';
 import { PlayerService } from './../../services/player/player.service';
 import { Component, OnInit } from '@angular/core';
@@ -37,22 +38,20 @@ export class GameComponent implements OnInit {
   playersIds: number[];
   pushedGiveUpButton: boolean = false;
 
-  constructor(private gameService: GameService, private playerService: PlayerService, private snackBar: MatSnackBar) {}
+  constructor(
+    private gameService: GameService,
+    private playerService: PlayerService,
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) {}
 
   async ngOnInit(): Promise<void> {
-    //await this.getPlayersIds();
     await this.getNumberOfTurns();
     this.getPlayerId();
     this.getGameId();
     this.getNumberOfTurns();
   }
-  /*
-  async getPlayersIds() {
-    return this.playerService.getAllPlayersIds().then((response) => {
-      this.playersIds = response;
-    });
-  }
-  */
+
   getPlayerId() {
     return this.playerService.getPlayerId();
   }
@@ -93,7 +92,12 @@ export class GameComponent implements OnInit {
     this.playerScore = playerScore;
     let opponentsLastTurn = await this.getOpponentsLastTurn();
     this.opponentsLastTurn = opponentsLastTurn;
-    this.incrementTurnCounter();
+    if (this.turnCounter === this.numberOfTurns) {
+      this.gameService.getGameResults(this.getGameId(), this.getPlayerId());
+      this.router.navigateByUrl('/game-results');
+    } else {
+      this.incrementTurnCounter();
+    }
   }
 
   incrementTurnCounter() {

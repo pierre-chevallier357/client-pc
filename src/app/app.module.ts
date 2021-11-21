@@ -16,6 +16,7 @@ import { WaitingPlayerComponent } from './components/waiting-player/waiting-play
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { EndGameWarningComponent } from './components/end-game-warning/end-game-warning.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { GameResultsComponent } from './components/game-results/game-results.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     JoinGameComponent,
     WaitingPlayerComponent,
     EndGameWarningComponent,
+    GameResultsComponent,
   ],
   imports: [
     BrowserModule,

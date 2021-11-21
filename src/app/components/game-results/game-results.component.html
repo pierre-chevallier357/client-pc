@@ -1,0 +1,5 @@
+<h2 *ngIf="playerResult === result.Win">Bravo vous avez gagné la partie !</h2>
+<h2 *ngIf="playerResult === result.Tie">Vous avez fait une égalité avec l'autre joueur.</h2>
+<h2 *ngIf="playerResult === result.Loss">Dommage, vous avez perdu...</h2>
+<p align="center">Score</p>
+<p align="center">Vous &nbsp; &nbsp; &nbsp; {{ scores[0] }} - {{ scores[1] }} &nbsp; &nbsp; &nbsp; Adversaire</p>

@@ -1,17 +1,17 @@
+<h2 align="center">Tour {{ turnCounter }} sur {{ numberOfTurns }}</h2>
+<br />
 <p>Dernier coup de l'adversaire : {{ opponentsLastTurn }}</p>
 <p>Votre score : {{ playerScore }}</p>
-<p>Tour n°{{ turnCounter }}</p>
-<p>Nombre de tours : {{ numberOfTurns }}</p>
 
 <hr />
 
-<br />
 <br />
 <h2 align="center">Décision</h2>
 <br />
 <button mat-raised-button (click)="selectedDecision = 'COOPERER'; playTurnAndGetResults()">Coopérer</button>
 <button mat-raised-button (click)="selectedDecision = 'TRAHIR'; playTurnAndGetResults()">Trahir</button>
-<button mat-raised-button (click)="openSnackBar()">Arrêter de jouer</button>
+<br />
+<button mat-button (click)="openSnackBar()">Arrêter de jouer</button>
 <span *ngIf="pushedGiveUpButton">
   <hr />
   <h2>Stratégie de l'ordinateur</h2>

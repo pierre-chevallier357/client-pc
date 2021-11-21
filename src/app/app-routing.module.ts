@@ -1,3 +1,4 @@
+import { GameResultsComponent } from './components/game-results/game-results.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ConnectionComponent } from './components/connection/connection.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'create-game', component: CreateGameComponent },
   { path: 'join-game', component: JoinGameComponent },
   { path: 'waiting-player', component: WaitingPlayerComponent },
+  { path: 'game-results', component: GameResultsComponent },
 ];
 
 @NgModule({
