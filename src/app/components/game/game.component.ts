@@ -18,6 +18,7 @@ export class GameComponent implements OnInit {
   turnCounter: number = 1;
   playersIds: number[];
   pushedGiveUpButton: boolean = false;
+  areDecisionButtonEnabled: boolean = true;
 
   constructor(
     private gameService: GameService,
@@ -60,12 +61,14 @@ export class GameComponent implements OnInit {
   }
 
   async playTurnAndGetResults() {
+    this.areDecisionButtonEnabled = false;
     await this.sendTurnDecision();
     await this.playTheTurn();
     let playerScore = await this.getPlayerScore();
     this.playerScore = playerScore;
     let opponentsLastTurn = await this.getOpponentsLastTurn();
     this.opponentsLastTurn = opponentsLastTurn;
+    this.areDecisionButtonEnabled = true;
     if (this.turnCounter === this.numberOfTurns) {
       this.gameService.getGameResults(this.getGameId(), this.getPlayerId());
       this.router.navigateByUrl('/game-results');

@@ -9,11 +9,21 @@
 <h2 align="center">Décision</h2>
 <br />
 <div class="wrapper">
-  <button mat-raised-button (click)="selectedDecision = 'COOPERER'; playTurnAndGetResults()" class="center">
+  <button
+    mat-raised-button
+    [disabled]="!areDecisionButtonEnabled"
+    (click)="selectedDecision = 'COOPERER'; playTurnAndGetResults()"
+    class="center"
+  >
     Coopérer
   </button>
   &nbsp;
-  <button mat-raised-button (click)="selectedDecision = 'TRAHIR'; playTurnAndGetResults()" class="center">
+  <button
+    mat-raised-button
+    [disabled]="!areDecisionButtonEnabled"
+    (click)="selectedDecision = 'TRAHIR'; playTurnAndGetResults()"
+    class="center"
+  >
     Trahir
   </button>
   <br />
