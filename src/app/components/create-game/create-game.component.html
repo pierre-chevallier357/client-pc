@@ -1,13 +1,15 @@
-<h2>Nombre de tours</h2>
-<mat-form-field appearance="fill">
-  <mat-label>Sélectionner</mat-label>
-  <mat-select [(ngModel)]="numberOfTurns" name="numberOfTurn">
-    <mat-option *ngFor="let turn of turnsList" [value]="turn">
-      {{ turn }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-<br />
-<button mat-raised-button [disabled]="numberOfTurns === undefined" (click)="waitForOtherPlayer()">
-  Créer la partie
-</button>
+<div class="center">
+  <h2>Nombre de tours</h2>
+  <mat-form-field appearance="fill">
+    <mat-label>Sélectionner</mat-label>
+    <mat-select [(ngModel)]="numberOfTurns" name="numberOfTurn">
+      <mat-option *ngFor="let turn of turnsList" [value]="turn">
+        {{ turn }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br />
+  <button mat-raised-button [disabled]="numberOfTurns === undefined" (click)="waitForOtherPlayer()">
+    Créer la partie
+  </button>
+</div>

@@ -1,8 +1,10 @@
-<h2>Prénom</h2>
-<mat-form-field>
-  <input matInput [formControl]="firstname" placeholder="Indiquez votre nom" />
-</mat-form-field>
-<br /><br />
+<div class="center">
+  <h2>Prénom</h2>
+  <mat-form-field>
+    <input matInput [formControl]="firstname" placeholder="Indiquez votre nom" />
+  </mat-form-field>
+</div>
+<br />
 <button mat-raised-button [disabled]="firstname.value === ''" (click)="selectedCreateNewGame = true; createPlayer()">
   Créer une partie
 </button>
