@@ -26,6 +26,8 @@ export class SelectStrategyComponent implements OnInit {
     { id: 10, name: 'Toujours coopérer' },
     { id: 11, name: 'Toujours trahir' },
     { id: 12, name: 'Vrai pacificateur' },
+    { id: 13, name: '[Autre groupe] Donnant donnant' },
+    { id: 14, name: '[Autre groupe] Toujours trahir' },
   ];
 
   constructor(private playerService: PlayerService, private gameService: GameService, private router: Router) {}
