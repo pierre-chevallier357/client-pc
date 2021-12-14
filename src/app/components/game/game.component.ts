@@ -18,7 +18,7 @@ export class GameComponent implements OnInit {
   turnCounter: number = 1;
   playersIds: number[];
   pushedGiveUpButton: boolean = false;
-  areDecisionButtonEnabled: boolean = true;
+  areDecisionButtonsEnabled: boolean = true;
 
   constructor(
     private gameService: GameService,
@@ -51,30 +51,30 @@ export class GameComponent implements OnInit {
   }
 
   async getPlayerScore(): Promise<number> {
-    let turnResult = await this.playerService.getPlayerScore(this.getGameId(), this.getPlayerId());
-    return turnResult;
+    return this.playerService.getPlayerScore(this.getGameId(), this.getPlayerId());
   }
 
   async getOpponentsLastTurn(): Promise<string> {
-    let opponentsLastTurn = await this.playerService.getOpponentsLastTurn(this.getGameId(), this.getPlayerId());
-    return opponentsLastTurn;
+    return this.playerService.getOpponentsLastTurn(this.getGameId(), this.getPlayerId());
   }
 
-  async playTurnAndGetResults() {
-    this.areDecisionButtonEnabled = false;
+  async playTurn() {
+    this.areDecisionButtonsEnabled = false;
     await this.sendTurnDecision();
     await this.playTheTurn();
-    let playerScore = await this.getPlayerScore();
-    this.playerScore = playerScore;
-    let opponentsLastTurn = await this.getOpponentsLastTurn();
-    this.opponentsLastTurn = opponentsLastTurn;
-    this.areDecisionButtonEnabled = true;
+    this.playerScore = await this.getPlayerScore();
+    this.opponentsLastTurn = await this.getOpponentsLastTurn();
+    this.areDecisionButtonsEnabled = true;
     if (this.turnCounter === this.numberOfTurns) {
-      this.gameService.getGameResults(this.getGameId(), this.getPlayerId());
-      this.router.navigateByUrl('/game-results');
+      this.getGameResults();
     } else {
       this.incrementTurnCounter();
     }
+  }
+
+  getGameResults() {
+    this.gameService.getGameResults(this.getGameId(), this.getPlayerId());
+    this.router.navigateByUrl('/game-results');
   }
 
   incrementTurnCounter() {
@@ -86,6 +86,6 @@ export class GameComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(EndGameDialogComponent);
+    this.dialog.open(EndGameDialogComponent);
   }
 }

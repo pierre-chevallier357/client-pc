@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { PlayerService } from './../../services/player/player.service';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -8,14 +8,12 @@ import { FormControl } from '@angular/forms';
   templateUrl: './connection.component.html',
   styleUrls: ['./connection.component.scss'],
 })
-export class ConnectionComponent implements OnInit {
+export class ConnectionComponent {
   firstname = new FormControl('');
   playerId: number;
   selectedCreateNewGame: boolean = true;
 
   constructor(private playerService: PlayerService, private router: Router) {}
-
-  ngOnInit() {}
 
   createPlayer() {
     this.playerService.createPlayer(this.firstname.value).then((id) => {

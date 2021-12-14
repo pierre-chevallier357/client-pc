@@ -11,8 +11,8 @@
 <div class="wrapper">
   <button
     mat-raised-button
-    [disabled]="!areDecisionButtonEnabled"
-    (click)="selectedDecision = 'COOPERER'; playTurnAndGetResults()"
+    [disabled]="!areDecisionButtonsEnabled"
+    (click)="selectedDecision = 'COOPERER'; playTurn()"
     class="center"
   >
     Coopérer
@@ -20,8 +20,8 @@
   &nbsp;
   <button
     mat-raised-button
-    [disabled]="!areDecisionButtonEnabled"
-    (click)="selectedDecision = 'TRAHIR'; playTurnAndGetResults()"
+    [disabled]="!areDecisionButtonsEnabled"
+    (click)="selectedDecision = 'TRAHIR'; playTurn()"
     class="center"
   >
     Trahir
