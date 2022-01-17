@@ -77,4 +77,8 @@ export class PlayerService {
     let strategySent: boolean = Boolean(await url.text());
     return strategySent;
   }
+
+  async disconnectPlayer(gameId: number, playerId: number) {
+    await fetch(this.backendUrl + 'disconnect/' + gameId + '&' + playerId);
+  }
 }

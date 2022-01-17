@@ -29,3 +29,5 @@
   <br />
   <button mat-button (click)="openDialog()" class="center">Arrêter de jouer</button>
 </div>
+
+<div (window:beforeunload)="disconnectPlayer()"></div>

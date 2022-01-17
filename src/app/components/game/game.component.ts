@@ -30,6 +30,9 @@ export class GameComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     await this.getNumberOfTurns();
     this.getPlayerId();
+    if (isNaN(this.getPlayerId())) {
+      this.router.navigateByUrl('/home');
+    }
     this.getGameId();
     this.getNumberOfTurns();
   }
@@ -87,5 +90,10 @@ export class GameComponent implements OnInit {
 
   openDialog() {
     this.dialog.open(EndGameDialogComponent);
+  }
+
+  disconnectPlayer() {
+    console.log('Page refreshed');
+    this.playerService.disconnectPlayer(this.getGameId(), this.getPlayerId());
   }
 }
