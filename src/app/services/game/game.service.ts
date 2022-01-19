@@ -49,4 +49,8 @@ export class GameService {
     });
     return results;
   }
+
+  async eraseGame(gameId: number) {
+    await fetch(this.backendUrl + 'supprimer-partie/' + gameId);
+  }
 }

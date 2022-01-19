@@ -41,4 +41,9 @@ export class GameResultsComponent implements OnInit {
     this.playerResult = playerResult;
     return playerResult;
   }
+
+  eraseGame() {
+    let gameId = this.gameService.getGameId();
+    this.gameService.eraseGame(gameId);
+  }
 }
