@@ -93,7 +93,6 @@ export class GameComponent implements OnInit {
   }
 
   disconnectPlayer() {
-    console.log('Page refreshed');
     this.playerService.disconnectPlayer(this.getGameId(), this.getPlayerId());
   }
 }
